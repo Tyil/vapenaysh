@@ -12,3 +12,12 @@
 */
 
 Route::get('/', 'AppController@index')->name('home');
+
+// Auth
+Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
+    Route::get('login', 'AuthController@login')->name('auth.login');
+    Route::get('logout', 'AuthController@logout')->name('auth.logout');
+
+    Route::get('redirect/{driver}', 'SocialController@redirect')->name('auth.social.redirect');
+    Route::get('callback/{driver}', 'SocialController@callback')->name('auth.social.callback');
+});

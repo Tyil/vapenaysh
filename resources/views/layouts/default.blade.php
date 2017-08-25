@@ -21,7 +21,12 @@
                             <a class="nav-item nav-link" href="#">Mixes</a>
                         </div>
                         <div class="navbar-nav">
-                            <a class="nav-item nav-link" href="#">Login</a>
+                            @if (Auth::check())
+                                <a class="nav-item nav-link disabled" href="#">{{Auth::user()->name}}</a>
+                                <a class="nav-item nav-link" href="{{route('auth.logout')}}">Logout</a>
+                            @else
+                                <a class="nav-item nav-link" href="{{route('auth.login')}}">Login</a>
+                            @endif
                         </div>
                     </div>
                 </nav>
