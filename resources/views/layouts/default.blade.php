@@ -37,7 +37,12 @@
         </main>
         <footer>
             <div class="container">
-                <p>&copy; Company 2017</p>
+                <p>
+                    &copy; 2017 -
+                    <a href="mailto:p.spek@tyil.work">
+                        Patrick Spek
+                    </a>
+                </p>
             </div>
         </footer>
     </body>
