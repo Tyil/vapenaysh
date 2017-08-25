@@ -18,11 +18,16 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbar">
                         <div class="navbar-nav">
                             <a class="nav-item nav-link" href="#">News</a>
-                            <a class="nav-item nav-link" href="#">Mixes</a>
+                            <a class="nav-item nav-link" href="{{route('mixes.index')}}">Mixes</a>
+                            <a class="nav-item nav-link" href="{{route('mixes.create')}}">
+                                <i class="fa fa-plus"></i>
+                            </a>
                         </div>
                         <div class="navbar-nav">
                             @if (Auth::check())
-                                <a class="nav-item nav-link disabled" href="#">{{Auth::user()->name}}</a>
+                                <a class="nav-item nav-link" href="{{route('users.show', ['id' => Auth::user()->id])}}">
+                                    {{Auth::user()->name}}
+                                </a>
                                 <a class="nav-item nav-link" href="{{route('auth.logout')}}">Logout</a>
                             @else
                                 <a class="nav-item nav-link" href="{{route('auth.login')}}">Login</a>
