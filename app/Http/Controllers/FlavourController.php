@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Mix;
 use Illuminate\Http\Request;
 
-class MixController extends Controller
+class FlavourController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +13,7 @@ class MixController extends Controller
      */
     public function index()
     {
-        $mixes = Mix::paginate(20);
-
-        return view('pages.mix.index', [
-            'mixes' => $mixes,
-        ]);
+        //
     }
 
     /**
@@ -50,11 +45,7 @@ class MixController extends Controller
      */
     public function show($id)
     {
-        $mix = Mix::findOrFail($id);
-
-        return view('pages.mix.show', [
-            'mix' => $mix,
-        ]);
+        //
     }
 
     /**

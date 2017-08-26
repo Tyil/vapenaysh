@@ -24,3 +24,4 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
 
 Route::resource('mixes', 'MixController');
 Route::resource('users', 'UserController');
+Route::resource('flavours', 'FlavourController');
