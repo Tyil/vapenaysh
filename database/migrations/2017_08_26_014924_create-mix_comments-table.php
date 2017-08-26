@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMixesTable extends Migration
+class CreateMixCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateMixesTable extends Migration
      */
     public function up()
     {
-        Schema::create('mixes', function (Blueprint $table) {
+        Schema::create('mix_comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->text('description')->default('');
+            $table->unsignedInteger('mix_id');
+            $table->text('body');
             $table->unsignedInteger('created_by');
             $table->timestamps();
-
-            $table->unique(['name', 'created_by']);
         });
     }
 
@@ -31,6 +29,6 @@ class CreateMixesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mixes');
+        Schema::dropIfExists('mix_comments');
     }
 }
