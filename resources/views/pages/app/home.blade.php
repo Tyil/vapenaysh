@@ -11,22 +11,26 @@
         </div>
     </div>
     <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        <div class="row">
+            @foreach ($mixes as $mix)
+                <div class="col-md-4">
+                    <h2>{{$mix->name}}</h2>
+                    <ul>
+                        @foreach ($mix->ingredients as $ingredient)
+                            <li>
+                                <a href="{{route('flavours.show', ['id' => $ingredient->flavour->id])}}">
+                                    {{$ingredient->flavour->name}}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                    <p>
+                        <a class="btn btn-secondary" href="{{route('mixes.show', ['id' => $mix->id])}}" role="button">
+                            View mix &raquo;
+                        </a>
+                    </p>
+                </div>
+            @endforeach
         </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-        </div>
-      </div>
+    </div>
 @endsection
