@@ -34,7 +34,9 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{$mixes->links()}}
+                    <div class="text-center">
+                        {{$mixes->links('vendor.pagination.bootstrap-4')}}
+                    </div>
                 @endcomponent
             </div>
         </div>
