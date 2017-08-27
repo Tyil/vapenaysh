@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Flavour;
 use App\Mix;
 use Illuminate\Http\Request;
 
@@ -26,9 +27,18 @@ class MixController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $flavours = Flavour::orderBy('name', 'desc')
+            ->orderBy('brand', 'desc')
+            ->get()
+            ;
+
+        return view('pages.mix.create', [
+            'flavours' => $flavours,
+            'input' => $request->all(),
+            'rows' => $request->get('flavours', 1),
+        ]);
     }
 
     /**
@@ -39,7 +49,13 @@ class MixController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->has('add-row-button') && $request->get('add-row-button') !== '') {
+            $rows = (int)$request->get('flavours') + (int)$request->get('add-rows', 1);
+
+            $request->request->add(['flavours' => $rows]);
+
+            return $this->create($request);
+        }
     }
 
     /**

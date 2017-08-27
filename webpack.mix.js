@@ -18,5 +18,9 @@ const jsSources = [
 ];
 
 mix.js(jsSources, 'public/js/app.js')
-   .sass('resources/assets/sass/app.scss', 'public/css/app.css')
-   .copy('node_modules/font-awesome/fonts', 'public/fonts');
+    .sass('resources/assets/sass/app.scss', 'public/css/app.css')
+    .autoload({
+        jquery: ['$', 'jQuery', 'window.jQuery'],
+        tether: ['Tether', 'window.Tether'],
+    })
+    .copy('node_modules/font-awesome/fonts', 'public/fonts');
