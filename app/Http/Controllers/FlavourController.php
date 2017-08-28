@@ -14,7 +14,11 @@ class FlavourController extends Controller
      */
     public function index()
     {
-        //
+        $flavours = Flavour::paginate(20);
+
+        return view('pages.flavour.index', [
+            'flavours' => $flavours,
+        ]);
     }
 
     /**

@@ -24,6 +24,12 @@
                                     <i class="fa fa-plus"></i>
                                 </a>
                             @endif
+                            <a class="nav-item nav-link" href="{{route('flavours.index')}}">Flavours</a>
+                            @if (Auth::check())
+                                <a class="nav-item nav-link" href="{{route('flavours.create')}}">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            @endif
                         </div>
                         <div class="navbar-nav">
                             @if (Auth::check())
