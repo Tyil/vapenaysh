@@ -8,12 +8,20 @@
         type="{{$type ?? 'text'}}"
         name="{{$id}}"
         id="{{$id}}"
-        class="form-control"
+        class="
+            form-control
+            @if (isset($class))
+                {{$class}}
+            @endif
+        "
         @if (isset($default) || old($id) !== null)
             value="{{old($id, $default ?? '')}}"
         @endif
         @if (isset($description))
             aria-describedby="{{$id}}-help"
+        @endif
+        @if (isset($attributes))
+            {{$attributes}}
         @endif
     >
     @if (isset($description))

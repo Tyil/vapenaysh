@@ -22,4 +22,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(SocialUser::class);
     }
+
+    public function mixComments()
+    {
+        return $this->hasMany(MixComment::class, 'created_by');
+    }
+
+    public function mixes()
+    {
+        return $this->hasMany(Mix::class, 'created_by');
+    }
 }
