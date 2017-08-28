@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Flavour;
+use App\Http\Requests\StoreFlavourRequest;
+use DB;
+use Exception;
 use Illuminate\Http\Request;
 
 class FlavourController extends Controller
@@ -28,7 +31,7 @@ class FlavourController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.flavour.create');
     }
 
     /**
@@ -37,9 +40,29 @@ class FlavourController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreFlavourRequest $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $flavour = new Flavour();
+
+            $flavour->name = $request->input('name');
+            $flavour->brand = $request->input('brand');
+            $flavour->link = $request->input('link') ?? '';
+            $flavour->description = $request->input('description') ?? '';
+            $flavour->save();
+
+            DB::commit();
+
+            return redirect()->route('flavours.show', [
+                'id' => $flavour->id,
+            ]);
+        } catch (Exception $e) {
+            DB::rollback();
+
+            throw $e;
+        }
     }
 
     /**

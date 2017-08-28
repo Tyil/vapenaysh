@@ -20,6 +20,9 @@
         @if (isset($description))
             aria-describedby="{{$id}}-help"
         @endif
+        @if (isset($required) && $required)
+            required
+        @endif
         @if (isset($attributes))
             {{$attributes}}
         @endif
