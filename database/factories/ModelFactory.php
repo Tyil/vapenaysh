@@ -22,6 +22,7 @@ $factory->define(Flavour::class, function (Generator $faker) {
     return [
         'name' => "{$faker->colorName} {$faker->word}",
         'brand' => $faker->company,
+        'description' => $faker->paragraphs(rand(1, 2), true),
         'link' => $faker->safeEmailDomain,
     ];
 });

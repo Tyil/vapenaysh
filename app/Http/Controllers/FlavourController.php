@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Flavour;
 use Illuminate\Http\Request;
 
 class FlavourController extends Controller
@@ -45,7 +46,16 @@ class FlavourController extends Controller
      */
     public function show($id)
     {
-        //
+        $flavour = Flavour::findOrfail($id);
+        $alternatives = Flavour::where('name', $flavour->name)
+            ->where('id', '<>', $flavour->id)
+            ->get()
+            ;
+
+        return view('pages.flavour.show', [
+            'flavour' => $flavour,
+            'alternatives' => $alternatives,
+        ]);
     }
 
     /**
