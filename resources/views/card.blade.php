@@ -1,4 +1,11 @@
-<div class="card">
+<div
+    class="
+        card
+        @if (isset($class))
+            {{$class}}
+        @endif
+    "
+>
     @if (isset($header))
         <div class="card-header">
             {{$header}}

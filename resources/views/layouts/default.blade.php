@@ -38,7 +38,31 @@
             </div>
         </header>
         <main>
-            @yield('main')
+            @section('main')
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12" style="margin-top: 1.5rem;">
+                            <h1>@yield('title')</h1>
+                        </div>
+                    </div>
+                    @if ($errors->any())
+                        <div class="row">
+                            <div class="col-sm-12">
+                                @component('card')
+                                    @slot('class', 'alert alert-danger')
+                                    @slot('title', 'Errors')
+                                    <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{{$error}}</li>
+                                        @endforeach
+                                    </ul>
+                                @endcomponent
+                            </div>
+                        </div>
+                    @endif
+                    @yield('content')
+                </div>
+            @show
         </main>
         <footer>
             <div class="container">

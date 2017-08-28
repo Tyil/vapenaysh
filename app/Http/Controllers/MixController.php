@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Flavour;
+use App\Http\Requests\StoreMixRequest;
 use App\Mix;
+use App\MixFlavour;
+use DB;
+use Exception;
 use Illuminate\Http\Request;
 
 class MixController extends Controller
@@ -29,15 +33,19 @@ class MixController extends Controller
      */
     public function create(Request $request)
     {
-        $flavours = Flavour::orderBy('name', 'desc')
-            ->orderBy('brand', 'desc')
+        if (!$request->has('flavours')) {
+            return view('pages.mix.select-flavours');
+        }
+
+        $flavours = Flavour::orderBy('name', 'asc')
+            ->orderBy('brand', 'asc')
             ->get()
             ;
 
         return view('pages.mix.create', [
             'flavours' => $flavours,
             'input' => $request->all(),
-            'rows' => $request->get('flavours', 1),
+            'rows' => $request->get('flavours'),
         ]);
     }
 
@@ -47,14 +55,37 @@ class MixController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMixRequest $request)
     {
-        if ($request->has('add-row-button') && $request->get('add-row-button') !== '') {
-            $rows = (int)$request->get('flavours') + (int)$request->get('add-rows', 1);
+        try {
+            DB::beginTransaction();
 
-            $request->request->add(['flavours' => $rows]);
+            $mix = new Mix();
 
-            return $this->create($request);
+            $mix->name = $request->input('name');
+            $mix->description = $request->input('description') ?? '';
+            $mix->created_by = 1;
+            $mix->save();
+
+            foreach ($request->input('flavour') as $flavour) {
+                $mixFlavour = new MixFlavour();
+
+                $mixFlavour->mix_id = $mix->id;
+                $mixFlavour->flavour_id = $flavour['flavour'];
+                $mixFlavour->units = $flavour['units'];
+                $mixFlavour->nicotine = $flavour['nicotine'];
+                $mixFlavour->save();
+            }
+
+            DB::commit();
+
+            return redirect()->route('mixes.show', [
+                'id' => $mix->id,
+            ]);
+        } catch (Exception $e) {
+            DB::rollback();
+
+            throw $e;
         }
     }
 
