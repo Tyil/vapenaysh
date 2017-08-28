@@ -19,9 +19,11 @@
                         <div class="navbar-nav">
                             <a class="nav-item nav-link" href="#">News</a>
                             <a class="nav-item nav-link" href="{{route('mixes.index')}}">Mixes</a>
-                            <a class="nav-item nav-link" href="{{route('mixes.create')}}">
-                                <i class="fa fa-plus"></i>
-                            </a>
+                            @if (Auth::check())
+                                <a class="nav-item nav-link" href="{{route('mixes.create')}}">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            @endif
                         </div>
                         <div class="navbar-nav">
                             @if (Auth::check())
