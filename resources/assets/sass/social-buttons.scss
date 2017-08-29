@@ -25,6 +25,11 @@
     }
 }
 
+.btn-social:hover {
+    color: inherit;
+    background-color:rgba(0, 0, 0, 0.1);
+}
+
 /* Per-button colors */
 .social-facebook {
     background-color: #3b5998;
