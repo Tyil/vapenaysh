@@ -33,7 +33,7 @@
                         <div class="navbar-nav">
                             @if (Auth::check())
                                 <a class="nav-item nav-link" href="{{route('users.show', ['id' => Auth::user()->id])}}">
-                                    {{Auth::user()->name}}
+                                    <strong>{{Auth::user()->name}}</strong>
                                 </a>
                                 <a class="nav-item nav-link" href="{{route('auth.logout')}}">Logout</a>
                             @else
