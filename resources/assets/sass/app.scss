@@ -1,9 +1,11 @@
-@import "node_modules/font-awesome/scss/font-awesome";
+// Bootstrap theme
+@import "node_modules/bootswatch/yeti/_variables";
 @import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootswatch/yeti/_bootswatch";
 
-// TODO: These don't seem to actually change anything
-// @import "_bootswatch";
-// @import "_variables";
+// Font Awesome
+@import "node_modules/font-awesome/scss/font-awesome";
 
+// Application-specific additions
 @import "social-buttons";
 @import "local";

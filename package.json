@@ -11,13 +11,12 @@
   },
   "devDependencies": {
     "axios": "^0.16.2",
-    "bootstrap": "^4.0.0-alpha.6",
-    "cross-env": "^5.0.1",
-    "jquery": "^3.1.1",
-    "laravel-mix": "^1.0"
+    "cross-env": "^5.0.1"
   },
   "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "bootswatch": "github:thomaspark/bootswatch#v4",
     "font-awesome": "^4.7.0",
-    "vue": "^2.4.2"
+    "laravel-mix": "^1.0"
   }
 }
