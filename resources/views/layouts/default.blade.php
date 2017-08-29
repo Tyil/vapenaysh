@@ -17,7 +17,6 @@
                     <a class="navbar-brand" href="{{route('home')}}">{{config('app.name')}}</a>
                     <div class="collapse navbar-collapse justify-content-between" id="navbar">
                         <div class="navbar-nav">
-                            <a class="nav-item nav-link" href="#">News</a>
                             <a class="nav-item nav-link" href="{{route('mixes.index')}}">Mixes</a>
                             @if (Auth::check())
                                 <a class="nav-item nav-link" href="{{route('mixes.create')}}">
