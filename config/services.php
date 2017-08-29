@@ -20,6 +20,12 @@ return [
         'redirect' => env('APP_URL') . '/auth/callback/facebook',
     ],
 
+    'github' => [
+        'client_id' => env('GITHUB_APP_ID'),
+        'client_secret' => env('GITHUB_APP_SECRET'),
+        'redirect' => env('APP_URL') . '/auth/callback/github',
+    ],
+
     'google' => [
         'client_id' => env('GOOGLE_APP_ID'),
         'client_secret' => env('GOOGLE_APP_SECRET'),
