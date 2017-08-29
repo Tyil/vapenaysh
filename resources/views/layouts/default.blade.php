@@ -79,6 +79,9 @@
                         Patrick Spek
                     </a>
                 </p>
+                <p>
+                    Vapenaysh is a <a href="https://github.com/Tyil/vapenaysh">free software project</a>.
+                </p>
             </div>
         </footer>
     </body>
