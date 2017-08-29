@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-12">
-                <form method="post" action="{{route('auth.login.finish')}}">
+                <form method="post" action="{{route('auth.register.finish')}}">
                     {{csrf_field()}}
                     @component('card')
                         @slot('title', 'Local login')

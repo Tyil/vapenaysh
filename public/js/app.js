@@ -3612,7 +3612,7 @@ var Popover = function ($) {
 __webpack_require__(2);
 __webpack_require__(0);
 __webpack_require__(6);
-module.exports = __webpack_require__(8);
+module.exports = __webpack_require__(7);
 
 
 /***/ }),
@@ -15729,25 +15729,8 @@ return Tether;
 // Import bootstrap's javascript files
 __webpack_require__(0);
 
-// Enable our own upgrades
-__webpack_require__(7)();
-
-console.log("why");
-
 /***/ }),
 /* 7 */
-/***/ (function(module, exports) {
-
-module.exports = function () {
-    document.querySelectorAll("table .table-row-adder").forEach(function (x) {
-        x.onclick = function () {
-            console.log("clicked");
-        };
-    });
-};
-
-/***/ }),
-/* 8 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

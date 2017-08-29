@@ -39,6 +39,7 @@
                                 <a class="nav-item nav-link" href="{{route('auth.logout')}}">Logout</a>
                             @else
                                 <a class="nav-item nav-link" href="{{route('auth.login')}}">Login</a>
+                                <a class="nav-item nav-link" href="{{route('auth.register')}}">Register</a>
                             @endif
                         </div>
                     </div>

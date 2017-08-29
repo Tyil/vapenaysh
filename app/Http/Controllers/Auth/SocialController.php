@@ -15,6 +15,10 @@ class SocialController extends Controller
     public function redirect(
         string $driver
     ) {
+        if (session()->has('register.name')) {
+            session()->keep('register.name');
+        }
+
         return Socialite::driver($driver)->redirect();
     }
 
@@ -33,36 +37,31 @@ class SocialController extends Controller
 
             // Create a new SocialUser
             if ($socialUser === null) {
+                if (!session()->has('register.name')) {
+                    return redirect()->route('auth.register');
+
+                    // todo: add message telling user to register
+                }
+
+                $user = new User();
+                $user->email = $providerUser->getEmail();
+                $user->name = session('register.name');
+                $user->password = '';
+                $user->save();
+
                 $socialUser = new SocialUser();
-                $socialUser->user_id = 0;
+                $socialUser->user_id = $user->id;
                 $socialUser->provider = $driver;
                 $socialUser->remote_id = $providerUser->getId();
                 $socialUser->save();
             }
 
-            $user = User::where('email', $providerUser->getEmail())
-                ->first()
-                ;
-
-            // Check if user has an account here already
-            if ($user === null) {
-                $user = new User();
-                $user->email = $providerUser->getEmail();
-                $user->name = $providerUser->getName();
-                $user->password = '';
-                $user->save();
-
-                // Link the new User to the SocialUser
-                $socialUser->user_id = $user->id;
-                $socialUser->save();
-            }
-
             // Log the user in
-            auth()->login($user);
+            auth()->login($socialUser->user);
 
             DB::commit();
 
-            return redirect()->route('home');
+            return redirect()->intended(route('home'));
         } catch (\Exception $e) {
             DB::rollback();
 

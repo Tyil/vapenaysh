@@ -1,0 +1,35 @@
+/**
+ * Greatly inspired by https://lipis.github.io/bootstrap-social/
+ */
+
+/* Global styling for all social buttons */
+.btn-social {
+    color: white;
+    position: relative;
+    padding-left: 50px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    >:first-child {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 38px;
+        line-height: 34px;
+        font-size: 1.6em;
+        text-align: center;
+        border-right: 1px solid rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* Per-button colors */
+.social-facebook {
+    background-color: #3b5998;
+}
+
+.social-google {
+    background-color: #dd4b39;
+}
