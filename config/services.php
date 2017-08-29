@@ -20,6 +20,12 @@ return [
         'redirect' => env('APP_URL') . '/auth/callback/facebook',
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE_APP_ID'),
+        'client_secret' => env('GOOGLE_APP_SECRET'),
+        'redirect' => env('APP_URL') . '/auth/callback/google',
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

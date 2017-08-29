@@ -19,7 +19,23 @@ class SocialController extends Controller
             session()->keep('register.name');
         }
 
+        $methodName = 'redirect' . ucfirst($driver);
+
+        if (method_exists($this, $methodName)) {
+            return $this->{$methodName}();
+        }
+
         return Socialite::driver($driver)->redirect();
+    }
+
+    public function redirectGoogle()
+    {
+        return Socialite::driver('google')
+            ->scopes([
+                'openid',
+            ])
+            ->redirect()
+            ;
     }
 
     public function callback(
@@ -38,9 +54,12 @@ class SocialController extends Controller
             // Create a new SocialUser
             if ($socialUser === null) {
                 if (!session()->has('register.name')) {
-                    return redirect()->route('auth.register');
-
-                    // todo: add message telling user to register
+                    return redirect()
+                        ->route('auth.register')
+                        ->with([
+                            'notice' => 'You don\'t have an account yet, you should register first.',
+                        ])
+                        ;
                 }
 
                 $user = new User();
@@ -65,7 +84,12 @@ class SocialController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
 
-            throw $e;
+            return redirect()
+                ->back()
+                ->withErrors([
+                    'exception' => $e->getMessage(),
+                ])
+                ;
         }
     }
 }
