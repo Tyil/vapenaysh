@@ -32,6 +32,12 @@ return [
         'redirect' => env('APP_URL') . '/auth/callback/google',
     ],
 
+    'twitter' => [
+        'client_id' => env('TWITTER_APP_ID'),
+        'client_secret' => env('TWITTER_APP_SECRET'),
+        'redirect' => env('APP_URL') . '/auth/callback/twitter',
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

@@ -35,8 +35,9 @@ class AuthController extends Controller
 
     private $socialDrivers = [
         'facebook' => 'Facebook',
-        'google' => 'Google',
         'github' => 'Github',
+        'google' => 'Google',
+        'twitter' => 'Twitter',
     ];
 
     /**
