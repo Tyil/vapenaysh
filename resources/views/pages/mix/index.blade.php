@@ -10,7 +10,7 @@
                 <table class="table table-striped">
                     <thead>
                         <th>Name</th>
-                        <th>Inventor</th>
+                        <th>Creator</th>
                     </thead>
                     <tbody>
                         @foreach ($mixes as $mix)
