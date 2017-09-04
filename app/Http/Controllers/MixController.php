@@ -64,7 +64,7 @@ class MixController extends Controller
 
             $mix->name = $request->input('name');
             $mix->description = $request->input('description') ?? '';
-            $mix->created_by = 1;
+            $mix->created_by = auth()->user()->id;
             $mix->save();
 
             foreach ($request->input('flavour') as $flavour) {
